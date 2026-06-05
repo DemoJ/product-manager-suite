@@ -43,6 +43,57 @@ git clone https://github.com/DemoJ/product-manager-suite.git ~/.claude/skills/pr
 请从这个仓库安装skill并使用： https://github.com/DemoJ/product-manager-suite
 ```
 
+## 如何更新 Skill
+
+如果你已经安装过本 Skill，后续仓库内容更新后，需要同步更新本地 Agent 技能目录中的 `product-manager-suite`。
+
+### 通过 Git 安装时
+
+如果当初是用 `git clone` 安装到 Claude Code 技能目录，可以直接进入安装目录并拉取最新版本。
+
+#### Windows PowerShell
+
+```powershell
+cd "$env:USERPROFILE\.claude\skills\product-manager-suite"
+git pull
+```
+
+#### macOS / Linux
+
+```bash
+cd ~/.claude/skills/product-manager-suite
+git pull
+```
+
+更新后建议重启 Claude Code，或开启一个新的 Claude Code 会话，让最新的 `SKILL.md` 描述和参考文件重新加载。
+
+### 通过 ZIP 手动安装时
+
+如果当初是下载 ZIP 后手动复制安装：
+
+1. 重新下载本仓库最新 ZIP。
+2. 解压后将文件夹重命名为 `product-manager-suite`。
+3. 替换原来的技能目录：`<agent-skills-dir>/product-manager-suite`。
+4. 重启 Agent 或开启新会话。
+
+### 给 Agent 看的更新提示词
+
+如果你希望让 Agent 帮你更新已安装的 Skill，可以直接复制下面的提示词：
+
+```text
+请更新我本地已安装的 product-manager-suite skill 到最新版本，仓库地址是：https://github.com/DemoJ/product-manager-suite
+```
+
+### 修改触发描述或能力边界时
+
+Skill 是否会被自动触发，主要取决于 `SKILL.md` 顶部 frontmatter 中的 `description` 字段。若你发现 Agent 在某些产品场景下没有自动使用本 Skill，例如截图后直接问“这个需求合理吗”，应优先更新：
+
+- `SKILL.md` 的 `description`
+- `README.md` 中的适用场景和示例请求
+- `evals/evals.json` 中的评估用例
+
+更新后可以用“如何验证安装成功”里的提示词，或更贴近你实际场景的提示词重新测试。
+
 ## 如何验证安装成功
 
 安装后，用以下任一提示测试：
